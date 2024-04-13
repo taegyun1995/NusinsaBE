@@ -1,0 +1,9 @@
+.gradle
+gradle
+gradlew
+gradlew.bat
+
+.idea
+
+HELP.md
+settings.gradle
