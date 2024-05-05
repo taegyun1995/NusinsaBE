@@ -23,7 +23,8 @@ public class WebSecurityConfig {
                         authorize -> authorize
                                 .requestMatchers(
                                         "/h2-console/**",
-                                        "/health"
+                                        "/health",
+                                        "/api/v1/signup"
                                 )
                                 .permitAll()
                                 .anyRequest()
