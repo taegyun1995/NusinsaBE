@@ -2,21 +2,22 @@ package com.nusinsa.backend.user.domain;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Embeddable;
-import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import java.util.Objects;
 
+import static lombok.AccessLevel.PROTECTED;
+
 @Getter
 @Embeddable
-@NoArgsConstructor(access = AccessLevel.PROTECTED)
-public class LoginId {
+@NoArgsConstructor(access = PROTECTED)
+public class Password {
 
-    @Column(name = "login_id")
+    @Column(name = "password")
     private String value;
 
-    public LoginId(String value) {
+    public Password(String value) {
         this.value = value;
     }
 
@@ -24,8 +25,8 @@ public class LoginId {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        LoginId loginId = (LoginId) o;
-        return Objects.equals(getValue(), loginId.getValue());
+        Password password = (Password) o;
+        return Objects.equals(getValue(), password.getValue());
     }
 
     @Override

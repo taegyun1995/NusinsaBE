@@ -5,6 +5,8 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.nusinsa.backend.user.application.port.in.SignUpCommand;
 import com.nusinsa.backend.user.application.port.in.SignUpUseCase;
 import com.nusinsa.backend.user.domain.LoginId;
+import com.nusinsa.backend.user.domain.Password;
+import com.nusinsa.backend.user.domain.UserName;
 import io.restassured.RestAssured;
 import io.restassured.filter.log.LogDetail;
 import io.restassured.http.ContentType;
@@ -40,23 +42,25 @@ class SignUpControllerTest {
 
     @Test
     @DisplayName("POST /api/v1/signup => (200) Success")
-    void SuccessCaseUserSignUp() throws JsonProcessingException {
+    void successCaseUserSignUp() throws JsonProcessingException {
         given()
                 .contentType(ContentType.JSON)
                 .body(objectMapper.writeValueAsString(getSignCommand()))
                 .when()
                 .post("/api/v1/signup")
                 .then()
-                .statusCode(HttpStatus.OK.value())
+                .statusCode(HttpStatus.CREATED.value())
                 .log()
                 .ifValidationFails(LogDetail.ALL);
 
-        verify(sut, times(1)).signUp(any());
+        verify(sut, times(1)).signUp(any(), any());
     }
 
-    public static SignUpCommand getSignCommand() {
+    public SignUpCommand getSignCommand() {
         return new SignUpCommand(
-                new LoginId("testId")
+                new LoginId("test id"),
+                new Password("test pw"),
+                new UserName("test name")
         );
     }
 

@@ -4,6 +4,6 @@ import com.nusinsa.backend.user.adapter.in.web.response.SignUpResponse;
 
 public interface SignUpUseCase {
 
-    SignUpResponse signUp(SignUpCommand command);
+    SignUpResponse signUp(String userAgent, SignUpCommand command);
 
 }
