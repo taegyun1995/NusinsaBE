@@ -8,8 +8,6 @@ import com.nusinsa.backend.user.domain.LoginId;
 import com.nusinsa.backend.user.domain.Password;
 import com.nusinsa.backend.user.domain.UserName;
 import io.restassured.RestAssured;
-import io.restassured.filter.log.LogDetail;
-import io.restassured.http.ContentType;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -17,6 +15,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.boot.test.web.server.LocalServerPort;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 
 import static io.restassured.RestAssured.given;
 import static org.mockito.ArgumentMatchers.any;
@@ -41,19 +40,35 @@ class SignUpControllerTest {
     }
 
     @Test
-    @DisplayName("POST /api/v1/signup => (200) Success")
-    void successCaseUserSignUp() throws JsonProcessingException {
-        given()
-                .contentType(ContentType.JSON)
+    @DisplayName("POST /api/v1/signup => (201) Created")
+    void 회원가입_성공() throws JsonProcessingException {
+        given().log().all()
+                .contentType(MediaType.APPLICATION_JSON_VALUE)
                 .body(objectMapper.writeValueAsString(getSignCommand()))
                 .when()
                 .post("/api/v1/signup")
                 .then()
-                .statusCode(HttpStatus.CREATED.value())
-                .log()
-                .ifValidationFails(LogDetail.ALL);
+                .log().all()
+                .statusCode(HttpStatus.CREATED.value());
 
         verify(sut, times(1)).signUp(any(), any());
+    }
+
+    @Test
+    @DisplayName("POST /api/v1/signup => (400) Bad Request")
+    void 회원가입_실패() {
+        String invalidJson = "{\"loginId\":null,\"password\":null,\"userName\":null}";
+
+        given().log().all()
+                .contentType(MediaType.APPLICATION_JSON_VALUE)
+                .body(invalidJson)
+                .when()
+                .post("/api/v1/signup")
+                .then()
+                .log().all()
+                .statusCode(HttpStatus.BAD_REQUEST.value());
+
+        verify(sut, times(0)).signUp(any(), any());
     }
 
     public SignUpCommand getSignCommand() {
@@ -63,5 +78,4 @@ class SignUpControllerTest {
                 new UserName("test name")
         );
     }
-
 }

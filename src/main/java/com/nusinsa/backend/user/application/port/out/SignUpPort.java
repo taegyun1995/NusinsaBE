@@ -4,6 +4,6 @@ import com.nusinsa.backend.user.domain.User;
 
 public interface SignUpPort {
 
-    void signUp(User user);
+    void signUp(final User user);
 
 }

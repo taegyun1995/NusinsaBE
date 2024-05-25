@@ -17,7 +17,7 @@ public class UserName {
     @Column(name = "user_name")
     private String value;
 
-    public UserName(String value) {
+    public UserName(final String value) {
         this.value = value;
     }
 
@@ -25,7 +25,7 @@ public class UserName {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        UserName userName = (UserName) o;
+        var userName = (UserName) o;
         return Objects.equals(getValue(), userName.getValue());
     }
 

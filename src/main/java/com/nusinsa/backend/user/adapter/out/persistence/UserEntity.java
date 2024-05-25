@@ -33,14 +33,14 @@ public class UserEntity extends TimeEntity {
     private String userAgent;
 
     @Builder
-    public UserEntity(LoginId loginId, Password password, UserName userName, String userAgent) {
+    public UserEntity(final LoginId loginId, final Password password, final UserName userName, final String userAgent) {
         this.loginId = loginId;
         this.password = password;
         this.userName = userName;
         this.userAgent = userAgent;
     }
 
-    public static UserEntity of(User user) {
+    public static UserEntity of(final User user) {
         return UserEntity.builder()
                 .loginId(user.getLoginId())
                 .password(user.getPassword())

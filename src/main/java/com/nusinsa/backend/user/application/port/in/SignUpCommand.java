@@ -3,21 +3,14 @@ package com.nusinsa.backend.user.application.port.in;
 import com.nusinsa.backend.user.domain.LoginId;
 import com.nusinsa.backend.user.domain.Password;
 import com.nusinsa.backend.user.domain.UserName;
-import lombok.AccessLevel;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import org.springframework.util.Assert;
 
-@Getter
-@NoArgsConstructor(access = AccessLevel.PROTECTED)
-public class SignUpCommand {
+public record SignUpCommand(LoginId loginId, Password password, UserName userName) {
 
-    private LoginId loginId;
-    private Password password;
-    private UserName userName;
-
-    public SignUpCommand(LoginId loginId, Password password, UserName userName) {
-        this.loginId = loginId;
-        this.password = password;
-        this.userName = userName;
+    public SignUpCommand {
+        Assert.notNull(loginId, "로그인 ID는 필수입니다.");
+        Assert.notNull(password, "비밀번호는 필수입니다.");
+        Assert.notNull(userName, "사용자 이름은 필수입니다.");
     }
+
 }

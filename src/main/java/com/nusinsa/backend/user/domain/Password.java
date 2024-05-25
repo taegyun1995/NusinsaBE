@@ -17,7 +17,7 @@ public class Password {
     @Column(name = "password")
     private String value;
 
-    public Password(String value) {
+    public Password(final String value) {
         this.value = value;
     }
 
@@ -25,7 +25,7 @@ public class Password {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Password password = (Password) o;
+        var password = (Password) o;
         return Objects.equals(getValue(), password.getValue());
     }
 

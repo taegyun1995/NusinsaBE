@@ -16,7 +16,7 @@ public class LoginId {
     @Column(name = "login_id")
     private String value;
 
-    public LoginId(String value) {
+    public LoginId(final String value) {
         this.value = value;
     }
 
@@ -24,7 +24,7 @@ public class LoginId {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        LoginId loginId = (LoginId) o;
+        var loginId = (LoginId) o;
         return Objects.equals(getValue(), loginId.getValue());
     }
 

@@ -14,7 +14,7 @@ public class SignUpAdapter implements SignUpPort {
     }
 
     @Override
-    public void signUp(User user) {
+    public void signUp(final User user) {
         UserEntity userEntity = UserEntity.of(user);
         jpaUserRepository.save(userEntity);
     }

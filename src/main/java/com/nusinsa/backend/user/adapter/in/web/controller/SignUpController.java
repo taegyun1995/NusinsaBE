@@ -19,8 +19,8 @@ public class SignUpController {
 
     @PostMapping("/signup")
     public ResponseEntity<SignUpResponse> signUp(
-            @RequestHeader("user-agent") String userAgent,
-            @RequestBody SignUpCommand command
+            @RequestHeader("user-agent") final String userAgent,
+            @RequestBody final SignUpCommand command
     ) {
         SignUpResponse response = useCase.signUp(userAgent, command);
         return ResponseEntity.status(HttpStatus.CREATED).body(response);

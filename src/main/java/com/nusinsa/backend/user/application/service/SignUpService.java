@@ -6,6 +6,7 @@ import com.nusinsa.backend.user.application.port.in.SignUpUseCase;
 import com.nusinsa.backend.user.application.port.out.SignUpPort;
 import com.nusinsa.backend.user.domain.User;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 public class SignUpService implements SignUpUseCase {
@@ -16,12 +17,13 @@ public class SignUpService implements SignUpUseCase {
         this.port = port;
     }
 
+    @Transactional
     @Override
-    public SignUpResponse signUp(String userAgent, SignUpCommand command) {
+    public SignUpResponse signUp(final String userAgent, final SignUpCommand command) {
         User user = User.of(userAgent, command);
         port.signUp(user);
 
-        return null;
+        return SignUpResponse.of(user);
     }
 
 }

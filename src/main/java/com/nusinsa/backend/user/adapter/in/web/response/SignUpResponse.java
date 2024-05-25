@@ -11,14 +11,16 @@ public class SignUpResponse {
 
     private final LoginId loginId;
     private final UserName userName;
+    private final String accessToken;
 
     @Builder
-    public SignUpResponse(LoginId loginId, UserName userName) {
+    public SignUpResponse(final LoginId loginId, final UserName userName, final String accessToken) {
         this.loginId = loginId;
         this.userName = userName;
+        this.accessToken = accessToken;
     }
 
-    public static SignUpResponse of(User user) {
+    public static SignUpResponse of(final User user) {
         return SignUpResponse.builder()
                 .loginId(user.getLoginId())
                 .userName(user.getUserName())
