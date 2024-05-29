@@ -22,7 +22,6 @@ public class UserName {
     private String value;
 
     public UserName(final String value) {
-        validate(value);
         this.value = value;
     }
 
@@ -37,15 +36,6 @@ public class UserName {
     @Override
     public int hashCode() {
         return Objects.hash(getValue());
-    }
-
-    private void validate(final String value) {
-        if (value == null || value.isEmpty()) {
-            throw new IllegalArgumentException("사용자 이름은 필수입니다.");
-        }
-        if (!value.matches(REGEX)) {
-            throw new IllegalArgumentException("사용자 이름은 " + MIN_LENGTH + " 자에서 " + MAX_LENGTH + " 자 사이의 한글, 영문 대소문자와 숫자로 이루어져야 합니다.");
-        }
     }
 
 }

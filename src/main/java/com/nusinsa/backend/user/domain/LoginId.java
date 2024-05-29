@@ -21,7 +21,6 @@ public class LoginId {
     private String value;
 
     public LoginId(final String value) {
-        validate(value);
         this.value = value;
     }
 
@@ -36,15 +35,6 @@ public class LoginId {
     @Override
     public int hashCode() {
         return Objects.hash(getValue());
-    }
-
-    private void validate(final String value) {
-        if (value == null || value.isEmpty()) {
-            throw new IllegalArgumentException("로그인 ID는 필수입니다.");
-        }
-        if (!value.matches(REGEX)) {
-            throw new IllegalArgumentException("로그인 아이디는 " + MIN_LENGTH + " 자에서 " + MAX_LENGTH + " 자 사이의 영문 대소문자와 숫자로 이루어져야 합니다.");
-        }
     }
 
 }

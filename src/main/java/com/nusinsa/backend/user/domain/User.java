@@ -1,6 +1,5 @@
 package com.nusinsa.backend.user.domain;
 
-import com.nusinsa.backend.user.application.port.in.SignUpCommand;
 import lombok.Builder;
 import lombok.Getter;
 
@@ -18,15 +17,6 @@ public class User {
         this.password = password;
         this.userName = userName;
         this.userAgent = userAgent;
-    }
-
-    public static User of(final String userAgent, final SignUpCommand command) {
-        return User.builder()
-                .loginId(command.loginId())
-                .password(command.password())
-                .userName(command.userName())
-                .userAgent(userAgent)
-                .build();
     }
 
 }
