@@ -13,11 +13,11 @@ import org.springframework.transaction.annotation.Transactional;
 public class SignUpService implements SignUpUseCase {
 
     private final SignUpPort signUpPort;
-    private final UserValidator userValidator;
+    private final SignUpValidatorImpl signUpValidatorImpl;
 
-    public SignUpService(SignUpPort signUpPort, UserValidator userValidator) {
+    public SignUpService(SignUpPort signUpPort, SignUpValidatorImpl signUpValidatorImpl) {
         this.signUpPort = signUpPort;
-        this.userValidator = userValidator;
+        this.signUpValidatorImpl = signUpValidatorImpl;
     }
 
     @Override
@@ -25,7 +25,7 @@ public class SignUpService implements SignUpUseCase {
     public SignUpResponse signUp(final String userAgent, final SignUpCommand command) {
         User user = UserConvertor.toDomainUser(userAgent, command);
 
-        userValidator.validate(user);
+        signUpValidatorImpl.validate(user);
         alreadyExistsValidateByLoginId(user);
 
         signUpPort.signUp(user);
