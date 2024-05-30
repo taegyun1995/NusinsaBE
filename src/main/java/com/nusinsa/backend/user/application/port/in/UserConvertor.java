@@ -5,7 +5,7 @@ import com.nusinsa.backend.user.domain.User;
 
 public class UserConvertor {
 
-    public static User toDomainUser(String userAgent, SignUpCommand command) {
+    public static User toUserDomain(String userAgent, SignUpCommand command) {
         return User.builder()
                 .loginId(command.loginId())
                 .password(command.password())

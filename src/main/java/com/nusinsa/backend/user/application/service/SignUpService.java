@@ -23,7 +23,7 @@ public class SignUpService implements SignUpUseCase {
     @Override
     @Transactional
     public SignUpResponse signUp(final String userAgent, final SignUpCommand command) {
-        User user = UserConvertor.toDomainUser(userAgent, command);
+        User user = UserConvertor.toUserDomain(userAgent, command);
 
         signUpValidatorImpl.validate(user);
         alreadyExistsValidateByLoginId(user);
