@@ -4,20 +4,11 @@ import com.nusinsa.backend.user.domain.LoginId;
 import com.nusinsa.backend.user.domain.User;
 import com.nusinsa.backend.user.domain.UserName;
 import lombok.Builder;
-import lombok.Getter;
 
-@Getter
-public class SignUpResponse {
-
-    private final LoginId loginId;
-    private final UserName userName;
-    private final String accessToken;
+public record SignUpResponse(LoginId loginId, UserName userName, String accessToken) {
 
     @Builder
-    public SignUpResponse(final LoginId loginId, final UserName userName, final String accessToken) {
-        this.loginId = loginId;
-        this.userName = userName;
-        this.accessToken = accessToken;
+    public SignUpResponse {
     }
 
     public static SignUpResponse of(final User user) {
