@@ -1,11 +1,14 @@
-package com.nusinsa.backend.user.application.service;
+package com.nusinsa.backend.user.application.service.signUp;
 
 import com.nusinsa.backend.advice.exception.ExceptionCodeConst;
 import com.nusinsa.backend.advice.exception.custom.AlreadyExistException;
 import com.nusinsa.backend.common.UseCase;
-import com.nusinsa.backend.user.adapter.in.web.response.SignUpResponse;
-import com.nusinsa.backend.user.application.port.in.*;
-import com.nusinsa.backend.user.application.port.out.SignUpPort;
+import com.nusinsa.backend.user.adapter.in.web.response.signUp.SignUpResponse;
+import com.nusinsa.backend.user.application.port.in.common.UserConvertor;
+import com.nusinsa.backend.user.application.port.in.signUp.SignUpCommand;
+import com.nusinsa.backend.user.application.port.in.signUp.SignUpUseCase;
+import com.nusinsa.backend.user.application.port.out.signUp.SignUpPort;
+import com.nusinsa.backend.user.application.service.validator.SignUpValidator;
 import com.nusinsa.backend.user.domain.User;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -13,11 +16,11 @@ import org.springframework.transaction.annotation.Transactional;
 public class SignUpService implements SignUpUseCase {
 
     private final SignUpPort signUpPort;
-    private final SignUpValidatorImpl signUpValidatorImpl;
+    private final SignUpValidator signUpValidator;
 
-    public SignUpService(SignUpPort signUpPort, SignUpValidatorImpl signUpValidatorImpl) {
+    public SignUpService(SignUpPort signUpPort, SignUpValidator signUpValidator) {
         this.signUpPort = signUpPort;
-        this.signUpValidatorImpl = signUpValidatorImpl;
+        this.signUpValidator = signUpValidator;
     }
 
     @Override
@@ -25,7 +28,7 @@ public class SignUpService implements SignUpUseCase {
     public SignUpResponse signUp(final String userAgent, final SignUpCommand command) {
         User user = UserConvertor.toUserDomain(userAgent, command);
 
-        signUpValidatorImpl.validate(user);
+        signUpValidator.validate(user);
         alreadyExistsValidateByLoginId(user);
 
         signUpPort.signUp(user);

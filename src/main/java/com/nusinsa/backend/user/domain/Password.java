@@ -2,6 +2,7 @@ package com.nusinsa.backend.user.domain;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Embeddable;
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -11,6 +12,7 @@ import static lombok.AccessLevel.PROTECTED;
 
 @Getter
 @Embeddable
+@EqualsAndHashCode
 @NoArgsConstructor(access = PROTECTED)
 public class Password {
 
@@ -23,19 +25,6 @@ public class Password {
 
     public Password(final String value) {
         this.value = value;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        var password = (Password) o;
-        return Objects.equals(getValue(), password.getValue());
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(getValue());
     }
 
 }

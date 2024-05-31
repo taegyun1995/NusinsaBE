@@ -1,7 +1,9 @@
 package com.nusinsa.backend.user.domain.validator;
 
 import com.nusinsa.backend.user.domain.LoginId;
+import org.springframework.stereotype.Component;
 
+@Component
 public class LoginIdValidator implements UserValidator<LoginId> {
 
     private static final String LOGIN_ID_FIELD_NAME = "로그인 ID";

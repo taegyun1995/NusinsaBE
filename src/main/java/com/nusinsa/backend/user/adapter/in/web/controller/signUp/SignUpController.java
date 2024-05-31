@@ -1,8 +1,8 @@
-package com.nusinsa.backend.user.adapter.in.web.controller;
+package com.nusinsa.backend.user.adapter.in.web.controller.signUp;
 
-import com.nusinsa.backend.user.adapter.in.web.response.SignUpResponse;
-import com.nusinsa.backend.user.application.port.in.SignUpCommand;
-import com.nusinsa.backend.user.application.port.in.SignUpUseCase;
+import com.nusinsa.backend.user.adapter.in.web.response.signUp.SignUpResponse;
+import com.nusinsa.backend.user.application.port.in.signUp.SignUpCommand;
+import com.nusinsa.backend.user.application.port.in.signUp.SignUpUseCase;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -23,7 +23,7 @@ public class SignUpController {
             @RequestBody final SignUpCommand command
     ) {
         SignUpResponse response = useCase.signUp(userAgent, command);
-        return ResponseEntity.status(HttpStatus.CREATED).body(response);
+        return ResponseEntity.status(HttpStatus.OK).body(response);
     }
 
 }

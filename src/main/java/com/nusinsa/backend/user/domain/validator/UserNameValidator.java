@@ -1,7 +1,9 @@
 package com.nusinsa.backend.user.domain.validator;
 
 import com.nusinsa.backend.user.domain.UserName;
+import org.springframework.stereotype.Component;
 
+@Component
 public class UserNameValidator implements UserValidator<UserName> {
 
     private static final String USERNAME_FIELD_NAME = "사용자 이름";

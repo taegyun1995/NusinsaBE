@@ -11,8 +11,8 @@ import lombok.NoArgsConstructor;
 import static jakarta.persistence.GenerationType.IDENTITY;
 
 @Getter
-@Table(name = "users")
 @Entity
+@Table(name = "users")
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class UserEntity extends TimeEntity {
 
@@ -38,15 +38,6 @@ public class UserEntity extends TimeEntity {
         this.password = password;
         this.userName = userName;
         this.userAgent = userAgent;
-    }
-
-    public static UserEntity of(final User user) {
-        return UserEntity.builder()
-                .loginId(user.getLoginId())
-                .password(user.getPassword())
-                .userName(user.getUserName())
-                .userAgent(user.getUserAgent())
-                .build();
     }
 
 }

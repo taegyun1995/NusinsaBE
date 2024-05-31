@@ -1,4 +1,4 @@
-package com.nusinsa.backend.user.application.service;
+package com.nusinsa.backend.user.application.service.validator;
 
 import com.nusinsa.backend.user.domain.User;
 

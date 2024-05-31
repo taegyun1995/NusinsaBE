@@ -1,10 +1,12 @@
-package com.nusinsa.backend.user.application.service;
+package com.nusinsa.backend.user.application.service.validator;
 
 import com.nusinsa.backend.user.domain.User;
 import com.nusinsa.backend.user.domain.validator.LoginIdValidator;
 import com.nusinsa.backend.user.domain.validator.PasswordValidator;
 import com.nusinsa.backend.user.domain.validator.UserNameValidator;
+import org.springframework.stereotype.Component;
 
+@Component
 public class SignUpValidatorImpl implements SignUpValidator {
 
     private final LoginIdValidator loginIdValidator;

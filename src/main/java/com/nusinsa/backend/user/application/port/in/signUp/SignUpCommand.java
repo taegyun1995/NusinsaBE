@@ -1,4 +1,4 @@
-package com.nusinsa.backend.user.application.port.in;
+package com.nusinsa.backend.user.application.port.in.signUp;
 
 import com.nusinsa.backend.user.domain.LoginId;
 import com.nusinsa.backend.user.domain.Password;

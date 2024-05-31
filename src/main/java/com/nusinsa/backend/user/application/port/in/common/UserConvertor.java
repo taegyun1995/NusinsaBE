@@ -1,6 +1,7 @@
-package com.nusinsa.backend.user.application.port.in;
+package com.nusinsa.backend.user.application.port.in.common;
 
 import com.nusinsa.backend.user.adapter.out.persistence.UserEntity;
+import com.nusinsa.backend.user.application.port.in.signUp.SignUpCommand;
 import com.nusinsa.backend.user.domain.User;
 
 public class UserConvertor {

@@ -1,7 +1,9 @@
 package com.nusinsa.backend.user.domain.validator;
 
 import com.nusinsa.backend.user.domain.Password;
+import org.springframework.stereotype.Component;
 
+@Component
 public class PasswordValidator implements UserValidator<Password>{
 
     private static final String PASSWORD_FIELD_NAME = "비밀번호";

@@ -1,8 +1,10 @@
-package com.nusinsa.backend.user.adapter.out.persistence;
+package com.nusinsa.backend.user.adapter.out.persistence.signUp;
 
 import com.nusinsa.backend.common.Adapter;
-import com.nusinsa.backend.user.application.port.in.UserConvertor;
-import com.nusinsa.backend.user.application.port.out.SignUpPort;
+import com.nusinsa.backend.user.adapter.out.persistence.JpaUserRepository;
+import com.nusinsa.backend.user.adapter.out.persistence.UserEntity;
+import com.nusinsa.backend.user.application.port.in.common.UserConvertor;
+import com.nusinsa.backend.user.application.port.out.signUp.SignUpPort;
 import com.nusinsa.backend.user.domain.LoginId;
 import com.nusinsa.backend.user.domain.User;
 
@@ -23,7 +25,7 @@ public class SignUpAdapter implements SignUpPort {
 
     @Override
     public boolean existsByLoginId(LoginId loginId) {
-        return jpaUserRepository.existsByLoginId(loginId.getValue());
+        return jpaUserRepository.existsByLoginId(loginId);
     }
 
 }
