@@ -1,18 +1,13 @@
 package com.nusinsa.backend.advice.exception;
 
-import lombok.Getter;
-
-@Getter
-public class ExceptionResponse {
-
-    private int status;
-    private String code;
-    private String message;
+public record ExceptionResponse(int status, String code, String message) {
 
     public ExceptionResponse(ExceptionCodeConst exceptionCodeConst) {
-        this.status = exceptionCodeConst.getStatus();
-        this.code = exceptionCodeConst.getCode();
-        this.message = exceptionCodeConst.getMessage();
+        this(
+                exceptionCodeConst.getStatus(),
+                exceptionCodeConst.getCode(),
+                exceptionCodeConst.getMessage()
+        );
     }
 
 }
